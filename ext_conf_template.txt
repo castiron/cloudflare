@@ -16,5 +16,11 @@ cacheSslContent = 0
 	# cat=advanced/enable/30; type=boolean; label=Purge single files (experimental): Tick this checkbox to try to purge single files on CloudFlare. Beware: Highly experimental!
 enablePurgeSingleFile = 0
 
+	# cat=advanced/enable/40; type=boolean; label=Enable Development Mode toggle: Tick this checkbox to include a "Toggle Development Mode" link in the TYPO3 backend (near the "Clear cache" links)
+showDevModeToggle = 1
+
+	# cat=advanced/enable/50; type=boolean; label=Enable "Clear CloudFlare Cache" link: Tick this checkbox to include a link in the "Clear cache" dropdown for clearing just the CloudFlare cache.  Note that the "Clear all caches" link will clear the CloudFlare cache regardless of this setting.
+enableSeparateCloudFlareCacheClearing = 1
+
 	# customsubcategory=proxy=Proxy Settings; cat=advanced/proxy; type=string; label=API Endpoint: Alternate API endpoint/proxy. Beware: DO NOT change unless you know what you do!
 apiEndpoint =

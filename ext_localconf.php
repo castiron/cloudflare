@@ -82,10 +82,12 @@ if (FALSE && $version >= 6000000) {
 }
 
 if (TYPO3_MODE === 'BE' && !empty($config['apiKey'])) {
-	$cloudflareToolbarItemClassPath = t3lib_extMgm::extPath($_EXTKEY, 'Classes/Hooks/TYPO3backend_Cloudflare.php');
-	$GLOBALS['TYPO3_CONF_VARS']['typo3/backend.php']['additionalBackendItems'][] = $cloudflareToolbarItemClassPath;
+	if ($config['showDevModeToggle'] === '1') {
+		$cloudflareToolbarItemClassPath = t3lib_extMgm::extPath($_EXTKEY, 'Classes/Hooks/TYPO3backend_Cloudflare.php');
+		$GLOBALS['TYPO3_CONF_VARS']['typo3/backend.php']['additionalBackendItems'][] = $cloudflareToolbarItemClassPath;
+	}
 
-	if ($config['domains'] !== '') {
+	if ($config['domains'] !== '' && $config['enableSeparateCloudFlareCacheClearing'] === '1') {
 		$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['additionalBackendItems']['cacheActions']['clearCloudflareCache'] = 'EXT:' . $_EXTKEY . '/Classes/Hooks/TYPO3backend.php:&Tx_Cloudflare_Hooks_TYPO3backend';
 		$GLOBALS['TYPO3_CONF_VARS']['BE']['AJAX']['cloudflare::clearCache'] = 'EXT:' . $_EXTKEY . '/Classes/Hooks/TCEmain.php:Tx_Cloudflare_Hooks_TCEmain->clearCache';
 	}
